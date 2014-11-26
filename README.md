@@ -14,13 +14,13 @@ docker run --rm -t -i -p 8080:8080 m451/docker-liferay-6.2
 ```
 When you have the message "INFO: Server startup in xxx ms" you can open a browser and go to http://localhost:8080
 
-### Linking with Mysql
-First start the mysql image
+### Linking with MySql
+First start the MySql image
 ```
 docker run --name lep-mysql -e MYSQL_ROOT_PASSWORD=r00tpassw0rd -e MYSQL_USER=lportal -e MYSQL_PASSWORD=p455w0rd -e MYSQL_DATABASE=liferaydb -d mysql:5.6
 ```
-This will create a new docker container called **lep-mysql** based on mysql 5.6, create a database called **liferaydb** as well as a user called **lportal** with the password **p455w0rd** and the root database password called **r00tpassw0rd**.
-See https://registry.hub.docker.com/_/mysql/ for details on how to use the mysql dockerfile.
+This will create a new docker container called **lep-mysql** based on MySql 5.6, create a database called **liferaydb** as well as a user called **lportal** with the password **p455w0rd** and the root database password called **r00tpassw0rd**.
+See https://registry.hub.docker.com/_/mysql/ for details on how to use the MySql dockerfile.
 
 Then start the liferay image with a link to the database
 ```
@@ -28,3 +28,5 @@ docker run --rm -it --name lep-portal -p 8080:8080 --link lep-mysql:db_lr m451/d
 ```
 
 This will make the container **lep-mysql** accessable from the container **lep-portal** via the environment variable **db_lr**. The dockerfile of the image m451/docker-liferay-6.2 is configured to use the properties within the **/config** folder of this repository. This will configure Liferay to use **jdbc:mysql://db_lr/liferaydb** as database with the username and password we just used when we created the MySql container.
+
+Note that startup can take a while, you should wait till you see "INFO: Server startup in xxx ms" before trying to access the application via your web browser.
