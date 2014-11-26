@@ -1,17 +1,12 @@
 # Liferay 6.2
 #
-# VERSION 0.0.5
-#
-
-# 0.0.1 : initial file with java 7u60
-# 0.0.2 : change base image : java 7u71
-# 0.0.3 : chain run commande to reduce image size (from 1.175 GB to 883.5MB), add JAVA_HOME env
-# 0.0.4 : change to debian:wheezy in order to reduce image size (883.5MB -> 664.1 MB)
-# 0.0.5 : bug with echo on setenv.sh
+# VERSION 0.0.1
+# Fork from snasello/docker-liferay-6.2
+# 0.0.1 : initial static setup for mysql & liferay multi-tier example
 
 FROM snasello/docker-debian-java7:7u71
 
-MAINTAINER Samuel Nasello <samuel.nasello@elosi.com>
+MAINTAINER m451
 
 # install liferay
 RUN apt-get install -y unzip \
@@ -19,13 +14,12 @@ RUN apt-get install -y unzip \
 	&& unzip liferay-portal-tomcat-6.2-ce-ga2-20140319114139101.zip -d /opt \
 	&& rm liferay-portal-tomcat-6.2-ce-ga2-20140319114139101.zip
 
-# add config for bdd
-RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga2/tomcat-7.0.42/bin/setenv.sh
+# add config for mysql database
+RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=mysql.properties"' >> /opt/liferay-portal-6.2-ce-ga2/tomcat-7.0.42/bin/setenv.sh
 
 # add configuration liferay file
-ADD lep/portal-bundle.properties /opt/liferay-portal-6.2-ce-ga2/portal-bundle.properties
-ADD lep/portal-bd-MYSQL.properties /opt/liferay-portal-6.2-ce-ga2/portal-bd-MYSQL.properties
-ADD lep/portal-bd-POSTGRESQL.properties /opt/liferay-portal-6.2-ce-ga2/portal-bd-POSTGRESQL.properties
+ADD config/liferay.properties /opt/liferay-portal-6.2-ce-ga2/liferay.properties
+ADD config/mysql.properties /opt/liferay-portal-6.2-ce-ga2/mysql.properties
 
 # volumes
 VOLUME ["/var/liferay-home", "/opt/liferay-portal-6.2-ce-ga2/"]
