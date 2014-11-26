@@ -27,4 +27,4 @@ Then start the liferay image with a link to the database
 docker run --rm -it --name lep-portal -p 8080:8080 --link lep-mysql:db_lr m451/docker-liferay-6.2
 ```
 
-This will make the container **lep-mysql** accessable from the container **lep-portal** via the environment variable **db_lr**. The dockerfile of the image m451/liferay-6.2:6.2-ce-ga2 is configured to use the properties within the **/config** folder of this repository. This will configure Liferay to use **jdbc:mysql://db_lr/liferaydb** as database with the username and password we just used when we created the MySql container.
+This will make the container **lep-mysql** accessable from the container **lep-portal** via the environment variable **db_lr**. The dockerfile of the image m451/docker-liferay-6.2 is configured to use the properties within the **/config** folder of this repository. This will configure Liferay to use **jdbc:mysql://db_lr/liferaydb** as database with the username and password we just used when we created the MySql container.
