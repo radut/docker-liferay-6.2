@@ -20,6 +20,7 @@ First start the mysql image
 docker run --name lep-mysql -e MYSQL_ROOT_PASSWORD=r00tpassw0rd -e MYSQL_USER=lportal -e MYSQL_PASSWORD=p455w0rd -e MYSQL_DATABASE=liferaydb -d mysql:5.6
 ```
 This will create a new docker container called **lep-mysql** based on mysql 5.6, create a database called **liferaydb** as well as a user called **lportal** with the password **p455w0rd** and the root database password called **r00tpassw0rd**.
+See https://registry.hub.docker.com/_/mysql/ for details on how to use the mysql dockerfile.
 
 Then start the liferay image with a link to the database
 ```
