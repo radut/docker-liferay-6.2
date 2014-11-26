@@ -17,7 +17,7 @@ RUN apt-get install -y unzip \
 # add config for mysql database
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=mysql.properties"' >> /opt/liferay-portal-6.2-ce-ga2/tomcat-7.0.42/bin/setenv.sh
 
-# add configuration liferay file
+# add config for liferay
 ADD config/liferay.properties /opt/liferay-portal-6.2-ce-ga2/liferay.properties
 ADD config/mysql.properties /opt/liferay-portal-6.2-ce-ga2/mysql.properties
 
