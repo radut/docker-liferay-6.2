@@ -6,7 +6,7 @@
 
 FROM snasello/docker-debian-java7:7u71
 
-MAINTAINER m451
+MAINTAINER Robert Szymczak
 
 # install liferay
 RUN apt-get install -y unzip \
