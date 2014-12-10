@@ -1,4 +1,6 @@
-# Dockerized liferay 6.2
+Dockerized liferay 6.2
+=============================
+
 This is a minimized version of the dockerized LifeRay 6.2 project by snasello  (https://github.com/snasello/docker-liferay-6.2). This version is narrowed in functionality in order to illustrate a very simple 2-tier dockerized application.
 
 The image is build in docker registry : https://registry.hub.docker.com/u/m451/docker-liferay-6.2
